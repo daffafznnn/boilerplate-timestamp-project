@@ -25,13 +25,18 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", function (req, res) {
-  const inputDate = req.params.date;
   let date;
-  // Check if the input is a Unix timestamp or a valid date string
-  if (!isNaN(inputDate)) {
-    date = new Date(parseInt(inputDate));
+  const inputDate = req.params.date;
+
+  if (!inputDate) {
+    date = new Date();
   } else {
-    date = new Date(inputDate);
+    // Check if the input is a Unix timestamp or a valid date string
+    if (!isNaN(inputDate)) {
+      date = new Date(parseInt(inputDate));
+    } else {
+      date = new Date(inputDate);
+    }
   }
 
   // Check if the date is valid
@@ -45,7 +50,6 @@ app.get("/api/:date", function (req, res) {
     res.json(output);
   }
 });
-
 
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
