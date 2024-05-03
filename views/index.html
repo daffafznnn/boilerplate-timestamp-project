@@ -14,13 +14,14 @@
     <div class="container">
       <h2>Example Usage:</h2>
       <ul>
+        <li><a href="api/">[project url]/api/</a></li>
         <li><a href="api/2015-12-25">[project url]/api/2015-12-25</a></li>
         <li><a href="api/1451001600000">[project url]/api/1451001600000</a></li>
       </ul>
 
       <h2>Example Output:</h2>
       <p>
-        <code>{"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"}</code>
+        <code>{"unix":<span id="currentUnixTime"></span>, "utc":"<span id="currentUTCTime"></span>"}</code>
       </p>
     </div>
     <div class="footer">
@@ -28,5 +29,11 @@
         By <a href="https://www.freecodecamp.org/">freeCodeCamp.org</a>
       </p>
     </div>
+
+    <script>
+      // Mengisi waktu saat ini di HTML saat halaman dimuat
+      document.getElementById("currentUnixTime").textContent = new Date().getTime();
+      document.getElementById("currentUTCTime").textContent = new Date().toUTCString();
+    </script>
   </body>
 </html>
